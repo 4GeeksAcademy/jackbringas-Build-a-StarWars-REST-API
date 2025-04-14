@@ -32,6 +32,9 @@ class User(db.Model):
         "Character", secondary=favorite_characters, backref="fans"
     )
 
+    def __repr__(self):
+        return f'<User {self.email}>'
+
     def serialize(self):
         return {
             "id": self.id,
@@ -47,6 +50,8 @@ class Character(db.Model):
     age: Mapped[int] = mapped_column(String(5), nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean(), nullable=False)
     
+    def __repr__(self):
+        return f'<Character {self.name}>'
 
     def serialize(self):
         return {
@@ -82,6 +87,9 @@ class Planet(db.Model):
     population: Mapped[int] = mapped_column(nullable=True)
     is_habitable: Mapped[bool] = mapped_column(Boolean(), nullable=False)
 
+    def __repr__(self):
+        return f'<Planet {self.name}>'
+    
     def serialize(self):
         return {
             "id": self.id,
